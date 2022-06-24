@@ -10,11 +10,14 @@ class Form extends React.Component {
       cardAttr3,
       cardImage,
       cardRare } = this.props;
-    const { cardTrunfo, hasTrunfo, isSaveButtonDisabled } = this.props;
+    const { cardTrunfo, isSaveButtonDisabled } = this.props;
     const { onInputChange, onSaveButtonClick } = this.props;
+    // const { hasTrunfo } = this.props;
+
     return (
       <form>
         <label htmlFor="name">
+          Nome
           <input
             data-testid="name-input"
             type="text"
@@ -25,6 +28,7 @@ class Form extends React.Component {
           />
         </label>
         <label htmlFor="description">
+          Descrição
           <input
             data-testid="description-input"
             type="textarea"
@@ -35,6 +39,7 @@ class Form extends React.Component {
           />
         </label>
         <label htmlFor="attr01">
+          Valor1
           <input
             data-testid="attr1-input"
             type="number"
@@ -45,6 +50,7 @@ class Form extends React.Component {
           />
         </label>
         <label htmlFor="attr02">
+          Valor2
           <input
             data-testid="attr2-input"
             type="number"
@@ -55,6 +61,7 @@ class Form extends React.Component {
           />
         </label>
         <label htmlFor="attr03">
+          Valor3
           <input
             data-testid="attr3-input"
             type="number"
@@ -65,6 +72,7 @@ class Form extends React.Component {
           />
         </label>
         <label htmlFor="image">
+          Imagem
           <input
             data-testid="image-input"
             type="text"
@@ -75,6 +83,7 @@ class Form extends React.Component {
           />
         </label>
         <label htmlFor="rare">
+          Raridade
           <select
             data-testid="rare-input"
             type="select"
@@ -89,6 +98,7 @@ class Form extends React.Component {
           </select>
         </label>
         <label htmlFor="trunfo">
+          Essa carte é trunfo?
           <input
             data-testid="trunfo-input"
             type="checkbox"
@@ -120,10 +130,10 @@ Form.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
-  hasTrunfo: PropTypes.bool.isRequired,
+  //   hasTrunfo: PropTypes.bool.isRequired,
   isSaveButtonDisabled: PropTypes.bool.isRequired,
-  onInputChange: PropTypes.string.isRequired,
-  onSaveButtonClick: PropTypes.string.isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  onSaveButtonClick: PropTypes.func.isRequired,
 };
 
 export default Form;

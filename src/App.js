@@ -15,8 +15,9 @@ class App extends React.Component {
       attr02: '',
       attr03: '',
       image: '',
-      rare: '',
+      rare: 'normal',
       trunfo: false,
+      isSaveButtonDisabled: true,
     };
   }
 
@@ -24,9 +25,34 @@ class App extends React.Component {
     const { name } = target;
     const value = target.type === 'checkbox'
       ? target.checked : target.value;
-    this.setState({
-      [name]: value,
-    });
+    this.setState(() => ({
+      [name]: value }), this.valueChecking);
+  }
+
+  valueChecking = () => {
+    const { name,
+      description,
+      attr01,
+      attr02,
+      attr03,
+      image,
+      rare,
+    } = this.state;
+    if ((Number(attr01) + Number(attr02) + Number(attr03)) <= '210'
+      && Number(attr01) <= '90'
+    && Number(attr02) <= '90'
+    && Number(attr03) <= '90'
+    && Number(attr01) >= 0
+    && Number(attr02) >= 0
+    && Number(attr03) >= 0
+    && name
+    && description
+    && image
+    && rare) {
+      this.setState(() => ({ isSaveButtonDisabled: false }));
+    } else {
+      this.setState(() => ({ isSaveButtonDisabled: true }));
+    }
   }
 
   render() {
@@ -37,7 +63,8 @@ class App extends React.Component {
       attr03,
       image,
       rare,
-      trunfo } = this.state;
+      trunfo,
+      isSaveButtonDisabled } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -51,6 +78,7 @@ class App extends React.Component {
           cardRare={ rare }
           cardTrunfo={ trunfo }
           onInputChange={ this.handleValue }
+          isSaveButtonDisabled={ isSaveButtonDisabled }
         />
         <Card
           cardName={ name }

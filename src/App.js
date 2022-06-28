@@ -9,7 +9,6 @@ class App extends React.Component {
     this.handleValue = this.handleValue.bind(this);
 
     this.state = {
-      cards: [],
       name: '',
       description: '',
       attr01: '',
@@ -19,6 +18,8 @@ class App extends React.Component {
       rare: 'normal',
       trunfo: false,
       isSaveButtonDisabled: true,
+      cards: [],
+      hasTrunfo: false,
     };
   }
 
@@ -56,6 +57,14 @@ class App extends React.Component {
     }
   }
 
+  trunfoChecking = () => {
+    const { cards } = this.state;
+    const test = cards.some((arr) => arr.hasTrunfo);
+    if (test === false) {
+      this.setState(() => ({ hasTrunfo: true }));
+    }
+  }
+
   onSaveButtonClick = () => {
     const { name,
       description,
@@ -82,7 +91,8 @@ class App extends React.Component {
       attr03: 0,
       image: '',
       rare: 'normal',
-      cards: [...prevState.cards, newData] }));
+      hasTrunfo: false,
+      cards: [...prevState.cards, newData] }), this.trunfoChecking);
   }
 
   render() {
@@ -94,7 +104,8 @@ class App extends React.Component {
       image,
       rare,
       trunfo,
-      isSaveButtonDisabled } = this.state;
+      isSaveButtonDisabled,
+      hasTrunfo } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -107,6 +118,7 @@ class App extends React.Component {
           cardImage={ image }
           cardRare={ rare }
           cardTrunfo={ trunfo }
+          hasTrunfo={ hasTrunfo }
           onInputChange={ this.handleValue }
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onSaveButtonClick={ this.onSaveButtonClick }

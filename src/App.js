@@ -9,6 +9,7 @@ class App extends React.Component {
     this.handleValue = this.handleValue.bind(this);
 
     this.state = {
+      cards: [],
       name: '',
       description: '',
       attr01: '',
@@ -55,6 +56,35 @@ class App extends React.Component {
     }
   }
 
+  onSaveButtonClick = () => {
+    const { name,
+      description,
+      attr01,
+      attr02,
+      attr03,
+      image,
+      rare,
+      trunfo } = this.state;
+    const newData = { name,
+      description,
+      attr01,
+      attr02,
+      attr03,
+      image,
+      rare,
+      trunfo };
+
+    this.setState((prevState) => ({
+      name: '',
+      description: '',
+      attr01: 0,
+      attr02: 0,
+      attr03: 0,
+      image: '',
+      rare: 'normal',
+      cards: [...prevState.cards, newData] }));
+  }
+
   render() {
     const { name,
       description,
@@ -79,6 +109,7 @@ class App extends React.Component {
           cardTrunfo={ trunfo }
           onInputChange={ this.handleValue }
           isSaveButtonDisabled={ isSaveButtonDisabled }
+          onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Card
           cardName={ name }

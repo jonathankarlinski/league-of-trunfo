@@ -20,6 +20,7 @@ class App extends React.Component {
       isSaveButtonDisabled: true,
       cards: [],
       hasTrunfo: false,
+      filter: '',
     };
   }
 
@@ -29,6 +30,10 @@ class App extends React.Component {
       ? target.checked : target.value;
     this.setState(() => ({
       [name]: value }), this.valueChecking);
+  }
+
+  setFilterName = (event) => {
+    this.setState({ filter: event.target.value });
   }
 
   valueChecking = () => {
@@ -106,7 +111,8 @@ class App extends React.Component {
       trunfo,
       isSaveButtonDisabled,
       cards,
-      hasTrunfo } = this.state;
+      hasTrunfo,
+      filter } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -135,18 +141,35 @@ class App extends React.Component {
           cardTrunfo={ trunfo }
         />
         <div>
-          {cards.map((card) => (
-            <Card
-              key={ card.name }
-              cardName={ card.name }
-              cardDescription={ card.description }
-              cardAttr1={ card.attr01 }
-              cardAttr2={ card.attr02 }
-              cardAttr3={ card.attr03 }
-              cardImage={ card.image }
-              cardRare={ card.rare }
-              cardTrunfo={ card.trunfo }
-            />))}
+          <input
+            data-testid="name-filter"
+            type="text"
+            placeholder="Digite uma carta"
+            onChange={ this.setFilterName }
+          />
+          <div>
+            {cards.filter((card) => card.name.includes(filter))
+              .map((card) => (
+                <div key={ card.name }>
+                  <Card
+                    cardName={ card.name }
+                    cardDescription={ card.description }
+                    cardAttr1={ card.attr01 }
+                    cardAttr2={ card.attr02 }
+                    cardAttr3={ card.attr03 }
+                    cardImage={ card.image }
+                    cardRare={ card.rare }
+                    cardTrunfo={ card.trunfo }
+                  />
+                  <button
+                    data-testid="delete-button"
+                    type="button"
+                  >
+                    Excluir
+                  </button>
+                </div>
+              ))}
+          </div>
         </div>
       </div>
     );

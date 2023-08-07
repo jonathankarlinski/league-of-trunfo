@@ -1,5 +1,6 @@
 {
   "name": "tryunfo",
+  "homepage": "https://jonathankarlinski.github.io/tryunfo/",
   "version": "0.1.0",
   "private": true,
   "engines": {
@@ -14,6 +15,7 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
+    "publicar": "npm run build && ./node_modules/.bin/gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -45,6 +47,7 @@
     "eslint": "^7.32.0",
     "eslint-config-trybe-frontend": "^1.2.3",
     "eslint-plugin-sonarjs": "^0.10.0",
+    "gh-pages": "^5.0.0",
     "prop-types": "^15.7.2",
     "stylelint": "^13.8.0",
     "stylelint-config-standard": "^20.0.0",

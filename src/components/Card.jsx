@@ -3,14 +3,18 @@ import PropTypes from 'prop-types';
 
 class Card extends React.Component {
   render() {
-    const { cardName,
+    const {
+      cardName,
       cardDescription,
       cardAttr1,
       cardAttr2,
       cardAttr3,
       cardImage,
       cardRare,
-      cardTrunfo } = this.props;
+      cardTrunfo,
+      isAListCard,
+      onDeleteButtonClick,
+    } = this.props;
     return (
       <div>
         <p data-testid="name-card">{ cardName }</p>
@@ -21,6 +25,16 @@ class Card extends React.Component {
         <p data-testid="attr3-card">{ cardAttr3 }</p>
         <p data-testid="rare-card">{ cardRare }</p>
         { cardTrunfo === true && <p data-testid="trunfo-card">Super Trunfo</p>}
+        {isAListCard && (
+          <button
+            type="button"
+            id={ cardName }
+            onClick={ onDeleteButtonClick }
+            data-testid="delete-button"
+          >
+            Excluir
+          </button>
+        )}
       </div>
     );
   }
@@ -35,7 +49,8 @@ Card.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
-
+  isAListCard: PropTypes.bool.isRequired,
+  onDeleteButtonClick: PropTypes.func.isRequired,
 };
 
 export default Card;

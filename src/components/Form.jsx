@@ -1,7 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../style/Form.css';
 
 class Form extends React.Component {
+  count = () => {
+    const { cardAttr1, cardAttr2, cardAttr3 } = this.props;
+    const maxPoints = 210;
+    const sum = maxPoints - cardAttr1 - cardAttr2 - cardAttr3;
+    if (sum > 0) {
+      return sum;
+    } if (sum === 0) {
+      return 'Voce chegou no limite de pontos';
+    }
+    return 'Voce passou o limite de pontos';
+  }
+
   render() {
     const {
       cardName,
@@ -17,8 +30,9 @@ class Form extends React.Component {
       onInputChange,
       onSaveButtonClick,
     } = this.props;
+
     return (
-      <form>
+      <form className="container-form">
         <label htmlFor="name">
           Nome
           <input
@@ -27,6 +41,8 @@ class Form extends React.Component {
             id="name"
             value={ cardName }
             onChange={ onInputChange }
+            maxLength="20"
+            placeholder="Digite o nome da carta"
           />
         </label>
         <label htmlFor="description">
@@ -37,38 +53,48 @@ class Form extends React.Component {
             id="description"
             value={ cardDescription }
             onChange={ onInputChange }
+            placeholder="Digite a decrição da carta"
           />
         </label>
-        <label htmlFor="attr01">
-          Valor1
-          <input
-            data-testid="attr1-input"
-            type="number"
-            id="attr01"
-            value={ cardAttr1 }
-            onChange={ onInputChange }
-          />
-        </label>
-        <label htmlFor="attr02">
-          Valor2
-          <input
-            data-testid="attr2-input"
-            type="number"
-            id="attr02"
-            value={ cardAttr2 }
-            onChange={ onInputChange }
-          />
-        </label>
-        <label htmlFor="attr03">
-          Valor3
-          <input
-            data-testid="attr3-input"
-            type="number"
-            id="attr03"
-            value={ cardAttr3 }
-            onChange={ onInputChange }
-          />
-        </label>
+        <div className="container-form-attr">
+          <label htmlFor="attr01">
+            Ataque
+            <input
+              data-testid="attr1-input"
+              type="number"
+              id="attr01"
+              value={ cardAttr1 }
+              onChange={ onInputChange }
+              min="0"
+              max="90"
+            />
+          </label>
+          <label htmlFor="attr02">
+            Estratégia
+            <input
+              data-testid="attr2-input"
+              type="number"
+              id="attr02"
+              value={ cardAttr2 }
+              onChange={ onInputChange }
+              min="0"
+              max="90"
+            />
+          </label>
+          <label htmlFor="attr03">
+            Defesa
+            <input
+              data-testid="attr3-input"
+              type="number"
+              id="attr03"
+              value={ cardAttr3 }
+              onChange={ onInputChange }
+              min="0"
+              max="90"
+            />
+          </label>
+        </div>
+        <p>{`Ponto Restantes: ${this.count()}`}</p>
         <label htmlFor="image">
           Imagem
           <input
@@ -77,26 +103,31 @@ class Form extends React.Component {
             id="image"
             value={ cardImage }
             onChange={ onInputChange }
+            placeholder="Digite a URL de imagem da carta"
           />
         </label>
-        <label htmlFor="rare">
-          Raridade
-          <select
-            data-testid="rare-input"
-            type="select"
-            id="rare"
-            value={ cardRare }
-            onChange={ onInputChange }
-          >
-            <option>normal</option>
-            <option>raro</option>
-            <option>muito raro</option>
-          </select>
-        </label>
-        <div>
-          {hasTrunfo ? (<p> Você já tem um Super Trunfo em seu baralho </p>) : (
+        <div className="container-form-rare">
+          <label htmlFor="rare">
+            Raridade da Carta
+            <select
+              data-testid="rare-input"
+              type="select"
+              id="rare"
+              value={ cardRare }
+              onChange={ onInputChange }
+            >
+              <option>normal</option>
+              <option>raro</option>
+              <option>muito raro</option>
+            </select>
+          </label>
+        </div>
+        {hasTrunfo ? (
+          <p> Você já tem um Super Trunfo em seu baralho </p>
+        ) : (
+          <div className="container-form-trunfo">
             <label htmlFor="trunfo">
-              Essa carte é trunfo?
+              Super Trunfo
               <input
                 data-testid="trunfo-input"
                 type="checkbox"
@@ -105,16 +136,16 @@ class Form extends React.Component {
                 onChange={ onInputChange }
               />
             </label>
-          )}
-          <button
-            data-testid="save-button"
-            type="button"
-            disabled={ isSaveButtonDisabled }
-            onClick={ onSaveButtonClick }
-          >
-            Salvar
-          </button>
-        </div>
+          </div>
+        )}
+        <button
+          data-testid="save-button"
+          type="button"
+          disabled={ isSaveButtonDisabled }
+          onClick={ onSaveButtonClick }
+        >
+          Salvar
+        </button>
       </form>
     );
   }

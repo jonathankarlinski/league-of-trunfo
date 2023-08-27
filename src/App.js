@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
+import Filter from './components/Filter';
 
 class App extends React.Component {
   constructor() {
@@ -40,9 +41,10 @@ class App extends React.Component {
     const check02 = attr1 + attr2 + attr3 > attrSumMax;
     const check03 = attr1 > attrLimit || attr2 > attrLimit || attr3 > attrLimit;
     const check04 = attr1 < 0 || attr2 < 0 || attr3 < 0;
+    const check05 = attr1 === 0 || attr2 === 0 || attr3 === 0;
 
     this.setState({
-      isSaveButtonDisabled: check01 || check02 || check03 || check04,
+      isSaveButtonDisabled: check01 || check02 || check03 || check04 || check05,
     });
   };
 
@@ -137,26 +139,11 @@ class App extends React.Component {
 
   handleDeleteButton = ({ target }) => {
     const { cards, filters } = this.state;
-
     this.setState({
       cards: cards.filter((card) => card.name !== target.id),
       filters: filters.filter((card) => card.name !== target.id),
     }, () => this.trunfoChecking());
   };
-
-  genericCards = (card) => (<Card
-    key={ `Card ${card.name}` }
-    cardName={ card.name }
-    cardDescription={ card.description }
-    cardAttr1={ card.attr01 }
-    cardAttr2={ card.attr02 }
-    cardAttr3={ card.attr03 }
-    cardImage={ card.image }
-    cardRare={ card.rare }
-    cardTrunfo={ card.trunfo }
-    isAListCard
-    onDeleteButtonClick={ this.handleDeleteButton }
-  />);
 
   render() {
     const {
@@ -167,73 +154,46 @@ class App extends React.Component {
     } = this.state;
 
     return (
-      <div>
-        <h1>Tryunfo</h1>
-        <Form
-          cardName={ name }
-          cardDescription={ description }
-          cardAttr1={ attr01 }
-          cardAttr2={ attr02 }
-          cardAttr3={ attr03 }
-          cardImage={ image }
-          cardRare={ rare }
-          cardTrunfo={ trunfo }
-          hasTrunfo={ hasTrunfo }
-          onInputChange={ this.handleValue }
-          isSaveButtonDisabled={ isSaveButtonDisabled }
-          onSaveButtonClick={ this.onSaveButtonClick }
-        />
-        <Card
-          cardName={ name }
-          cardDescription={ description }
-          cardAttr1={ attr01 }
-          cardAttr2={ attr02 }
-          cardAttr3={ attr03 }
-          cardImage={ image }
-          cardRare={ rare }
-          cardTrunfo={ trunfo }
-          isAListCard={ false }
-          onDeleteButtonClick={ this.handleDeleteButton }
-        />
-        <h2>Todas as cartas</h2>
-        <input
-          type="text"
-          disabled={ trunfoFilter }
-          value={ filter }
-          onChange={ this.handleValue }
-          data-testid="name-filter"
-        />
-        <label htmlFor="rarityFilter">
-          Raridade
-          <select
-            data-testid="rare-filter"
-            id="rarityFilter"
-            disabled={ trunfoFilter }
-            value={ rarityFilter }
-            onChange={ this.handleValue }
-          >
-            <option>todas</option>
-            <option>normal</option>
-            <option>raro</option>
-            <option>muito raro</option>
-          </select>
-        </label>
-        <label htmlFor="trunfoFilter">
-          Trunfo
-          <input
-            data-testid="trunfo-filter"
-            type="checkbox"
-            id="trunfoFilter"
-            checked={ trunfoFilter }
-            onChange={ this.handleValue }
+      <>
+        <h1>League of Trunfo</h1>
+        <main className="container-formCard">
+          <Form
+            cardName={ name }
+            cardDescription={ description }
+            cardAttr1={ attr01 }
+            cardAttr2={ attr02 }
+            cardAttr3={ attr03 }
+            cardImage={ image }
+            cardRare={ rare }
+            cardTrunfo={ trunfo }
+            hasTrunfo={ hasTrunfo }
+            onInputChange={ this.handleValue }
+            isSaveButtonDisabled={ isSaveButtonDisabled }
+            onSaveButtonClick={ this.onSaveButtonClick }
           />
-        </label>
-        {isFiltering ? (
-          filters.map(this.genericCards)
-        ) : (
-          cards.map(this.genericCards)
-        )}
-      </div>
+          <Card
+            cardName={ name }
+            cardDescription={ description }
+            cardAttr1={ attr01 }
+            cardAttr2={ attr02 }
+            cardAttr3={ attr03 }
+            cardImage={ image }
+            cardRare={ rare }
+            cardTrunfo={ trunfo }
+            isAListCard={ false }
+            onDeleteButtonClick={ this.handleDeleteButton }
+          />
+        </main>
+        <Filter
+          filter={ filter }
+          rarityFilter={ rarityFilter }
+          isFiltering={ isFiltering }
+          trunfoFilter={ trunfoFilter }
+          cards={ cards }
+          filters={ filters }
+          handleValue={ this.handleValue }
+        />
+      </>
     );
   }
 }

@@ -1,0 +1,25 @@
+.container-filter {
+  align-items: center;
+  border-top: solid 0.7rem hsl(33, 53%, 34%);
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.container-filter-form {
+  align-items: center;
+  background-color: hsl(47, 62%, 75%);
+  border-radius: 0 0 1rem 1rem;
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.container-filter-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  padding-top: 1rem;
+}

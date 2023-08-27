@@ -1,0 +1,89 @@
+.container-card {
+  background-color: hsl(47, 62%, 75%);
+  border: solid 0.5rem hsl(33, 53%, 34%);
+  border-radius: 1rem;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  font-weight: 600;
+  gap: 0.5rem;
+  height: 35.125rem;
+  padding: 1rem;
+  text-align: center;
+  width: 26.25rem;
+}
+
+.container-card-top {
+  align-items: center;
+  background-color: hsl(33, 42%, 39%);
+  border: 0.2rem solid hsl(33, 53%, 34%);
+  border-radius: 0.25rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.container-card-top h2 {
+  width: 17.125rem;
+}
+
+.container-card-top-rare {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 5.5rem;
+  padding: 0.5rem;
+  width: 3.375rem;
+}
+
+.container-card-top-rare img {
+  padding-top: 0.2rem;
+  width: 3.375rem;
+}
+
+.container-card-top-rare p {
+  margin-top: 0;
+}
+
+.container-card-top-img {
+  padding: 0.5rem;
+  width: 3.375rem;
+}
+
+.container-card-img {
+  background-color: hsl(33, 53%, 34%);
+  border: 0.3rem solid hsl(33, 42%, 39%);
+  border-radius: 0.25rem;
+  height: 14.375rem;
+  width: 25.875rem;
+}
+
+
+.container-card-attr {
+  display: flex;
+  height: 3.75rem;
+  justify-content: space-around;
+  margin: 0;
+}
+
+.container-card-attr p {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.container-card-description {
+  background-color: hsl(33, 42%, 39%);
+  border: solid 0.3rem hsl(33, 53%, 34%);
+  border-radius: 0.25rem;
+  height: 3.75rem;
+  margin: 0;
+  padding: 1rem;
+  width: auto;
+}
+
+.container-card button {
+  border: 0.2rem solid hsl(33, 42%, 39%);
+  border-radius: 0.5rem;
+  height: 2rem;
+}

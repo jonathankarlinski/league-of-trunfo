@@ -53,6 +53,7 @@ class Form extends React.Component {
             id="description"
             value={ cardDescription }
             onChange={ onInputChange }
+            maxLength="320"
             placeholder="Digite a decrição da carta"
           />
         </label>
@@ -70,7 +71,7 @@ class Form extends React.Component {
             />
           </label>
           <label htmlFor="attr02">
-            Estratégia
+            Inteligência
             <input
               data-testid="attr2-input"
               type="number"

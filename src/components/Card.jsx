@@ -67,7 +67,7 @@ class Card extends React.Component {
             </span>
           </p>
           <p data-testid="attr2-card">
-            Estratégia
+            Inteligência
             <span>
               { cardAttr2 }
             </span>
@@ -81,7 +81,9 @@ class Card extends React.Component {
         </div>
         <p
           data-testid="description-card"
-          className="container-card-description"
+          className={ `${isAListCard !== false
+            ? 'container-card-description-button'
+            : 'container-card-description'}` }
         >
           { cardDescription }
         </p>

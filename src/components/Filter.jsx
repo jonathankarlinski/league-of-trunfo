@@ -4,26 +4,30 @@ import '../style/Filter.css';
 import Card from './Card';
 
 class Filter extends React.Component {
-  genericCards = (card, index) => (<Card
-    key={ index }
-    cardName={ card.name }
-    cardDescription={ card.description }
-    cardAttr1={ card.attr01 }
-    cardAttr2={ card.attr02 }
-    cardAttr3={ card.attr03 }
-    cardImage={ card.image }
-    cardRare={ card.rare }
-    cardTrunfo={ card.trunfo }
-    isAListCard
-    onDeleteButtonClick={ this.handleDeleteButton }
-  />);
+  genericCards = (card, index) => {
+    const { onDeleteButtonClick } = this.props;
+    return (
+      <Card
+        key={ index }
+        cardName={ card.name }
+        cardDescription={ card.description }
+        cardAttr1={ card.attr01 }
+        cardAttr2={ card.attr02 }
+        cardAttr3={ card.attr03 }
+        cardImage={ card.image }
+        cardRare={ card.rare }
+        cardTrunfo={ card.trunfo }
+        isAListCard={ card.isAListCard !== false }
+        onDeleteButtonClick={ onDeleteButtonClick }
+      />);
+  };
 
   render() {
     const {
       trunfoFilter,
       filter,
       rarityFilter,
-      handleValue,
+      onInputChange,
       filters,
       isFiltering,
       cards,
@@ -31,22 +35,25 @@ class Filter extends React.Component {
     return (
       <main className="container-filter">
         <div className="container-filter-form">
-          <input
-            type="text"
-            disabled={ trunfoFilter }
-            value={ filter }
-            onChange={ handleValue }
-            data-testid="name-filter"
-            maxLength="20"
-            placeholder="Digite o nome da carta"
-          />
+          <label htmlFor="filter">
+            <input
+              type="text"
+              id="filter"
+              disabled={ trunfoFilter }
+              value={ filter }
+              onChange={ onInputChange }
+              data-testid="name-filter"
+              maxLength="20"
+              placeholder="Digite o nome da carta"
+            />
+          </label>
           <label htmlFor="rarityFilter">
             <select
               data-testid="rare-filter"
               id="rarityFilter"
               disabled={ trunfoFilter }
               value={ rarityFilter }
-              onChange={ handleValue }
+              onChange={ onInputChange }
             >
               <option>todas</option>
               <option>normal</option>
@@ -61,15 +68,15 @@ class Filter extends React.Component {
               type="checkbox"
               id="trunfoFilter"
               checked={ trunfoFilter }
-              onChange={ handleValue }
+              onChange={ onInputChange }
             />
           </label>
         </div>
         <div className="container-filter-cards">
           {isFiltering ? (
-            filters.map(this.genericCards)
+            filters.reverse().map(this.genericCards)
           ) : (
-            cards.map(this.genericCards)
+            cards.reverse().map(this.genericCards)
           )}
         </div>
       </main>
@@ -82,9 +89,10 @@ Filter.propTypes = {
   trunfoFilter: PropTypes.bool.isRequired,
   isFiltering: PropTypes.bool.isRequired,
   filter: PropTypes.string.isRequired,
-  filters: PropTypes.arrayOf(PropTypes.string).isRequired,
-  cards: PropTypes.arrayOf(PropTypes.string).isRequired,
-  handleValue: PropTypes.func.isRequired,
+  filters: PropTypes.arrayOf(PropTypes.object).isRequired,
+  cards: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onInputChange: PropTypes.func.isRequired,
+  onDeleteButtonClick: PropTypes.func.isRequired,
 };
 
 export default Filter;

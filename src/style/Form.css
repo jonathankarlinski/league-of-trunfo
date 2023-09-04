@@ -38,6 +38,7 @@ input, select {
 }
 
 .container-form-attr input {
+  padding-left: 1rem;
   text-align: center;
   width: 50%;
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
 import Filter from './components/Filter';
+import dataCards from './data/data';
 
 class App extends React.Component {
   constructor() {
@@ -25,6 +26,38 @@ class App extends React.Component {
       trunfoFilter: false,
       filters: [],
     };
+  }
+
+  componentDidMount() {
+    const { cards } = this.state;
+    this.combinarArraysDeObjetos(cards);
+  }
+
+  componentDidUpdate() {
+    const { cards } = this.state;
+    const cardsFilter = this.filtrarLista(cards);
+    const setCards = JSON.stringify(cardsFilter);
+    localStorage.setItem('saveCards', setCards);
+  }
+
+  filtrarLista = (arrayDeObjetos) => {
+    const arrayFiltrado = arrayDeObjetos.filter((objeto) => objeto.isAListCard !== false);
+    return arrayFiltrado;
+  }
+
+  combinarArraysDeObjetos = (array1) => {
+    const getCards = localStorage.getItem('saveCards');
+    const objetoRecuperado = JSON.parse(getCards);
+    let teste = [];
+    if (objetoRecuperado === null) {
+      teste = [...dataCards];
+    } else {
+      teste = [...dataCards, ...objetoRecuperado];
+    }
+
+    this.setState({
+      cards: [...teste, ...array1],
+    });
   }
 
   valueChecking = () => {
@@ -191,7 +224,8 @@ class App extends React.Component {
           trunfoFilter={ trunfoFilter }
           cards={ cards }
           filters={ filters }
-          handleValue={ this.handleValue }
+          onInputChange={ this.handleValue }
+          onDeleteButtonClick={ this.handleDeleteButton }
         />
       </>
     );

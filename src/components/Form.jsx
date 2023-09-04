@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../style/Form.css';
 
+const maximuAttr = 90;
+
 class Form extends React.Component {
   count = () => {
     const { cardAttr1, cardAttr2, cardAttr3 } = this.props;
@@ -98,7 +100,9 @@ class Form extends React.Component {
             />
           </label>
         </div>
-        <p>{`Ponto Restantes: ${this.count()}`}</p>
+        {(cardAttr1 > maximuAttr || cardAttr2 > maximuAttr || cardAttr3 > maximuAttr)
+          ? (<p>Nenhum atributo pode passar de 90 </p>)
+          : (<p>{`Ponto Restantes: ${this.count()}`}</p>)}
         <label htmlFor="image">
           Imagem
           <input

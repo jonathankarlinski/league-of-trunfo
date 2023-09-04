@@ -1,18 +1,24 @@
 {
   "files": {
-    "main.css": "/league-of-trunfo/static/css/main.702537a1.css",
-    "main.js": "/league-of-trunfo/static/js/main.d30c1d8c.js",
+    "main.css": "/league-of-trunfo/static/css/main.f2236527.css",
+    "main.js": "/league-of-trunfo/static/js/main.3c349229.js",
+    "static/media/Nami.jpg": "/league-of-trunfo/static/media/Nami.a292115c9bf67f5ccee0.jpg",
+    "static/media/Yasuo.jpg": "/league-of-trunfo/static/media/Yasuo.8927f5c240c55753a213.jpg",
+    "static/media/Thresh.jpg": "/league-of-trunfo/static/media/Thresh.5dc45b889d1e76c02c2e.jpg",
+    "static/media/Ezreal.jpg": "/league-of-trunfo/static/media/Ezreal.dabcbc7b4c666546b76d.jpg",
+    "static/media/Jinx.jpg": "/league-of-trunfo/static/media/Jinx.e93d82c60db09457a61a.jpg",
+    "static/media/Ahri.jpg": "/league-of-trunfo/static/media/Ahri.31fbdcdf7dc4def05b1c.jpg",
     "static/media/background.png": "/league-of-trunfo/static/media/background.b07768bbd4483c55c8a2.png",
     "static/media/iconChallenger.svg": "/league-of-trunfo/static/media/iconChallenger.dba7cd6cb3ab90e44ce34d2245a5b98e.svg",
     "static/media/iconPlatinum.svg": "/league-of-trunfo/static/media/iconPlatinum.a80bc9f1b73d4b2d0d06fd9a5705aaff.svg",
     "static/media/iconChamp.svg": "/league-of-trunfo/static/media/iconChamp.b2e61441289b5616542ba1f3b735390d.svg",
     "index.html": "/league-of-trunfo/index.html",
     "static/media/trash.svg": "/league-of-trunfo/static/media/trash.1b27f438c0ef94dfb015f3be38b02d48.svg",
-    "main.702537a1.css.map": "/league-of-trunfo/static/css/main.702537a1.css.map",
-    "main.d30c1d8c.js.map": "/league-of-trunfo/static/js/main.d30c1d8c.js.map"
+    "main.f2236527.css.map": "/league-of-trunfo/static/css/main.f2236527.css.map",
+    "main.3c349229.js.map": "/league-of-trunfo/static/js/main.3c349229.js.map"
   },
   "entrypoints": [
-    "static/css/main.702537a1.css",
-    "static/js/main.d30c1d8c.js"
+    "static/css/main.f2236527.css",
+    "static/js/main.3c349229.js"
   ]
 }

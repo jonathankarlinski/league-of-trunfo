@@ -8,11 +8,14 @@ class Form extends React.Component {
     const maxPoints = 210;
     const sum = maxPoints - cardAttr1 - cardAttr2 - cardAttr3;
     if (sum > 0) {
-      return sum;
-    } if (sum === 0) {
-      return 'Voce chegou no limite de pontos';
+      return `${sum}`;
     }
-    return 'Voce passou o limite de pontos';
+
+    if (sum === 0) {
+      return 'Você chegou no limite de pontos';
+    }
+
+    return 'Você passou o limite de pontos';
   }
 
   render() {

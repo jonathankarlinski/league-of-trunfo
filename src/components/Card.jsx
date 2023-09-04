@@ -14,9 +14,11 @@ class Card extends React.Component {
     const { cardRare } = this.props;
     if (cardRare === 'normal') {
       return iconSilver;
-    } if (cardRare === 'raro') {
+    }
+    if (cardRare === 'raro') {
       return iconPlatinum;
     }
+
     return iconChallenger;
   }
 

@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/league-of-trunfo/static/css/main.682ad6bc.css",
-    "main.js": "/league-of-trunfo/static/js/main.06bbc283.js",
+    "main.css": "/league-of-trunfo/static/css/main.f09d38fa.css",
+    "main.js": "/league-of-trunfo/static/js/main.e17e28b2.js",
     "static/media/Nami.jpg": "/league-of-trunfo/static/media/Nami.a292115c9bf67f5ccee0.jpg",
     "static/media/Yasuo.jpg": "/league-of-trunfo/static/media/Yasuo.8927f5c240c55753a213.jpg",
     "static/media/Thresh.jpg": "/league-of-trunfo/static/media/Thresh.5dc45b889d1e76c02c2e.jpg",
@@ -14,11 +14,11 @@
     "static/media/iconChamp.svg": "/league-of-trunfo/static/media/iconChamp.b2e61441289b5616542ba1f3b735390d.svg",
     "index.html": "/league-of-trunfo/index.html",
     "static/media/trash.svg": "/league-of-trunfo/static/media/trash.1b27f438c0ef94dfb015f3be38b02d48.svg",
-    "main.682ad6bc.css.map": "/league-of-trunfo/static/css/main.682ad6bc.css.map",
-    "main.06bbc283.js.map": "/league-of-trunfo/static/js/main.06bbc283.js.map"
+    "main.f09d38fa.css.map": "/league-of-trunfo/static/css/main.f09d38fa.css.map",
+    "main.e17e28b2.js.map": "/league-of-trunfo/static/js/main.e17e28b2.js.map"
   },
   "entrypoints": [
-    "static/css/main.682ad6bc.css",
-    "static/js/main.06bbc283.js"
+    "static/css/main.f09d38fa.css",
+    "static/js/main.e17e28b2.js"
   ]
 }

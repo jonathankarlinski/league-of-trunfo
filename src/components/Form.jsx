@@ -58,7 +58,7 @@ class Form extends React.Component {
             id="description"
             value={ cardDescription }
             onChange={ onInputChange }
-            maxLength="320"
+            maxLength="220"
             placeholder="Digite a decrição da carta"
           />
         </label>

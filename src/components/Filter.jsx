@@ -74,9 +74,9 @@ class Filter extends React.Component {
         </div>
         <div className="container-filter-cards">
           {isFiltering ? (
-            filters.reverse().map(this.genericCards)
+            filters.map(this.genericCards)
           ) : (
-            cards.reverse().map(this.genericCards)
+            cards.map(this.genericCards)
           )}
         </div>
       </main>

@@ -20,7 +20,7 @@ class App extends React.Component {
       rarityFilter: 'todas',
       trunfo: false,
       isSaveButtonDisabled: true,
-      cards: [],
+      cards: dataCards,
       hasTrunfo: false,
       isFiltering: false,
       trunfoFilter: false,
@@ -30,34 +30,26 @@ class App extends React.Component {
 
   componentDidMount() {
     const { cards } = this.state;
-    this.combinarArraysDeObjetos(cards);
+    cards.reverse();
+    if (localStorage.getItem('saveCards') === null) {
+      const setCards = JSON.stringify(cards);
+      localStorage.setItem('saveCards', setCards);
+    }
+    this.funcitionInicial();
   }
 
   componentDidUpdate() {
     const { cards } = this.state;
-    const cardsFilter = this.filtrarLista(cards);
-    const setCards = JSON.stringify(cardsFilter);
+    const setCards = JSON.stringify(cards);
     localStorage.setItem('saveCards', setCards);
   }
 
-  filtrarLista = (arrayDeObjetos) => {
-    const arrayFiltrado = arrayDeObjetos.filter((objeto) => objeto.isAListCard !== false);
-    return arrayFiltrado;
-  }
-
-  combinarArraysDeObjetos = (array1) => {
+  funcitionInicial = () => {
     const getCards = localStorage.getItem('saveCards');
     const objetoRecuperado = JSON.parse(getCards);
-    let teste = [];
-    if (objetoRecuperado === null) {
-      teste = [...dataCards];
-    } else {
-      teste = [...dataCards, ...objetoRecuperado];
-    }
-
-    this.setState({
-      cards: [...teste, ...array1],
-    });
+    this.setState(() => ({
+      cards: objetoRecuperado,
+    }));
   }
 
   valueChecking = () => {
@@ -69,15 +61,19 @@ class App extends React.Component {
     const attr3 = parseInt(attr03, 10);
     const attrLimit = 90;
     const attrSumMax = 210;
+    const descriptionMax = 220;
 
     const check01 = name === '' || description === '' || image === '';
     const check02 = attr1 + attr2 + attr3 > attrSumMax;
     const check03 = attr1 > attrLimit || attr2 > attrLimit || attr3 > attrLimit;
     const check04 = attr1 < 0 || attr2 < 0 || attr3 < 0;
     const check05 = attr1 === 0 || attr2 === 0 || attr3 === 0;
-
+    const check06 = description.length > descriptionMax;
     this.setState({
-      isSaveButtonDisabled: check01 || check02 || check03 || check04 || check05,
+      isSaveButtonDisabled:
+        check01
+        || check02
+        || check03 || check04 || check05 || check06,
     });
   };
 
@@ -155,7 +151,6 @@ class App extends React.Component {
       trunfo: false,
       isSaveButtonDisabled: true,
       cards: [
-        ...prevState.cards,
         {
           name,
           description,
@@ -166,6 +161,7 @@ class App extends React.Component {
           rare,
           trunfo,
         },
+        ...prevState.cards,
       ],
     }), () => this.trunfoChecking());
   };
